@@ -1,0 +1,186 @@
+using System; 
+
+using System.Collections.Generic; 
+
+
+
+  
+
+class Program 
+
+{ 
+
+    static void Main() 
+
+    { 
+
+        Console.WriteLine("Witaj w quizie!"); 
+
+  
+
+        List<string> pytania = new List<string> 
+
+        { 
+
+            "W którym roku odbył się chrzest Polski?", 
+
+            "Kiedy odbyła się bitwa pod Grunwaldem?", 
+
+            "Kiedy odbył się pierwszy rozbiór polski?", 
+
+            "Kiedy odbył się trzeci rozbiór polski?", 
+
+            "Kiedy odbył się drugi rozbiór polski?", 
+
+            "Podaj datę rozpoczęcia wojny stuletniej?", 
+
+            "Kiedy odbyła się koronacja Bolesława Chrobrego?", 
+
+            "Podaj datę rozpoczęcia I wojny światowej?", 
+
+            "Kiedy rozpoczęła się II wojna światowa?", 
+
+            "Na ile lat Polska straciła niepodległość?", 
+
+            "W którym roku Krzysztof Kolumb odkrył Amerykę?" 
+
+        }; 
+
+  
+
+        List<string> odpowiedzi = new List<string> 
+
+        { 
+
+            "966", 
+
+            "1410", 
+
+            "1772", 
+
+            "1795", 
+
+            "1793", 
+
+            "1337", 
+
+            "1025", 
+
+            "1914", 
+
+            "1939", 
+
+            "123", 
+
+            "1492" 
+
+        }; 
+
+  
+
+        int punkty = 0; 
+
+  
+
+        while (punkty < 5) 
+
+        { 
+
+            for (int i = 0; i < pytania.Count; i++) 
+
+            { 
+
+                Console.WriteLine($"{i + 1}. {pytania[i]}"); 
+
+  
+
+                Console.Write("Podaj datę jako odpowiedź (rok): "); 
+
+                string odpowiedzGraczaString = Console.ReadLine(); 
+
+  
+
+                if (odpowiedzGraczaString.ToLower() == "koniec gry") 
+
+                { 
+
+                    Console.WriteLine($"Gra zakończona. Twój wynik: {punkty} punktów."); 
+
+                    return; 
+
+                } 
+
+  
+
+                if (int.TryParse(odpowiedzGraczaString, out int odpowiedzGracza)) 
+
+                { 
+
+                    string poprawnaOdpowiedz = odpowiedzi[i]; 
+
+  
+
+                    if (odpowiedzGracza.ToString() == poprawnaOdpowiedz) 
+
+                    { 
+
+                        Console.WriteLine($"Poprawna odpowiedź! Zdobywasz 2 punkty."); 
+
+                        punkty += 2; 
+
+                    } 
+
+                    else 
+
+                    { 
+
+                        Console.WriteLine($"Błędna odpowiedź. Brak punktów. Poprawna odpowiedź: {poprawnaOdpowiedz}"); 
+
+                    } 
+
+                } 
+
+                else 
+
+                { 
+
+                    Console.WriteLine("Błędna odpowiedź. Podaj datę jako liczbę (rok). Spróbuj ponownie."); 
+
+                    i--;  
+
+                } 
+
+  
+
+                Console.WriteLine(); 
+
+            } 
+
+  
+
+            Console.WriteLine($"Koniec rundy. Twój wynik: {punkty} punktów."); 
+
+  
+
+            if (punkty < 5) 
+
+            { 
+
+                Console.WriteLine("Musisz uzyskać co najmniej 5 punktów, aby ukończyć quiz"); 
+
+                Console.WriteLine("Nie uzyskałeś minimum 5 punktów. Gra rozpocznie się od nowa."); 
+
+                punkty = 0; 
+
+            } 
+
+        } 
+
+  
+
+		{
+			Console.WriteLine("Gratulacje! Uzyskałeś co najmniej 5 punktów. Gra zakończona."); 
+		}
+	}
+}
+	
